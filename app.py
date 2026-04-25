@@ -88,11 +88,11 @@ if uploaded_file is not None:
             plt.xticks(rotation='vertical')
             st.pyplot(fig)
 
-    #activity heatmap:
-    st.title("weekly activity HeatMap")
-    user_heatmap = h.User_heatmap(selected_usr,df)
-    fig, ax = plt.subplots()
-    ax = sns.heatmap(user_heatmap)
-    st.pyplot(fig)
+        #activity heatmap:
+        st.title("weekly activity HeatMap")
+        user_heatmap = h.User_heatmap(selected_usr,df)
+        fig, ax = plt.subplots()
+        ax = sns.heatmap(user_heatmap)
+        st.pyplot(fig)
 
 
