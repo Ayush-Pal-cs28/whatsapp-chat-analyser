@@ -1,16 +1,30 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-import preprocessor as pp
+import preprocessor1 as pp1
+import preprocessor2 as pp2
 import helper as h
 import streamlit as st
+import re
 
 st.sidebar.title("WhatsApp Chat Analyzer")
 uploaded_file = st.sidebar.file_uploader("Choose a file")
+def detect_format(text):
+    if re.search(r'\d{1,2}:\d{2}\s?(AM|PM|am|pm)', text):
+        return "12hr"
+    else:
+        return "24hr"
+
+
 if uploaded_file is not None:
-    # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
-    df = pp.preprocess(data)
+
+    fmt = detect_format(data)
+
+    if fmt == "12hr":
+        df = pp2.preprocess(data)
+    else:
+        df = pp1.preprocess(data)
 
     #fetch unique users
     user_list = df['user'].unique().tolist()
