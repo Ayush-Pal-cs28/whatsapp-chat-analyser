@@ -8,9 +8,9 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 #reading the stop words
-with open("/Users/ACS/whatsapp chat analysis/stop_words.txt", "r") as f:
+with open("stop_words.txt", "r") as f:
     content1 = {word.lower() for word in f.read().split()}
-with open("/Users/ACS/whatsapp chat analysis/bengali_pronouns.txt", "r",encoding="utf-8") as f:
+with open("bengali_pronouns.txt", "r",encoding="utf-8") as f:
     content2 = {word.lower() for word in f.read().split()}
 nltk_stopwords = set(word.lower() for word in stopwords.words('english'))
 ALL_STOPWORDS = content1.union(content2).union(nltk_stopwords)
